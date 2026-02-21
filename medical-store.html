@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcure - Medical Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        :root {
+            --dark-blue: #0a1929;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #4a90e2;
+        }
+
+        .search-container {
+            flex: 0 1 400px;
+            display: flex;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-container button {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: var(--black);
+            padding: 0.8rem 5%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #4a90e2;
+        }
+
+        /* Main Content */
+        .page-title {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem 5%;
+        }
+
+        .page-title h2 {
+            font-size: 2rem;
+        }
+
+        .store-content {
+            padding: 3rem 5%;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        /* Filters */
+        .filters {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+            border: 1px solid #ddd;
+        }
+
+        .filters h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-section h4 {
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .filter-options {
+            list-style: none;
+        }
+
+        .filter-options li {
+            margin-bottom: 0.7rem;
+        }
+
+        .filter-options label {
+            margin-left: 0.5rem;
+            color: #666;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 180px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+        }
+
+        .product-manufacturer {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #1a3a5c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Well<span>cure</span></h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search in Medical Store...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="cart-icon">
+            <a href="cart.html" style="color: var(--white); text-decoration: none;">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical-store.html">Medical Store</a></li>
+            <li><a href="healthcare.html">Healthcare</a></li>
+            <li><a href="lab-tests.html">Lab Tests</a></li>
+            <li><a href="babycare.html">Baby Care</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborations.html">Collaborations</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-title">
+        <h2>Medical Store</h2>
+        <p>Genuine medicines at best prices</p>
+    </div>
+
+    <div class="store-content">
+        <!-- Filters Sidebar -->
+        <aside class="filters">
+            <h3>Filters</h3>
+            <div class="filter-section">
+                <h4>Category</h4>
+                <ul class="filter-options">
+                    <li><input type="checkbox" id="pain-relief"><label for="pain-relief">Pain Relief</label></li>
+                    <li><input type="checkbox" id="antibiotics"><label for="antibiotics">Antibiotics</label></li>
+                    <li><input type="checkbox" id="vitamins"><label for="vitamins">Vitamins & Supplements</label></li>
+                    <li><input type="checkbox" id="cardiac"><label for="cardiac">Cardiac Care</label></li>
+                    <li><input type="checkbox" id="diabetes"><label for="diabetes">Diabetes Care</label></li>
+                </ul>
+            </div>
+            <div class="filter-section">
+                <h4>Price Range</h4>
+                <ul class="filter-options">
+                    <li><input type="checkbox" id="under-100"><label for="under-100">Under ₹100</label></li>
+                    <li><input type="checkbox" id="100-500"><label for="100-500">₹100 - ₹500</label></li>
+                    <li><input type="checkbox" id="500-1000"><label for="500-1000">₹500 - ₹1000</label></li>
+                    <li><input type="checkbox" id="above-1000"><label for="above-1000">Above ₹1000</label></li>
+                </ul>
+            </div>
+            <div class="filter-section">
+                <h4>Prescription Required</h4>
+                <ul class="filter-options">
+                    <li><input type="radio" name="prescription" id="all"><label for="all">All</label></li>
+                    <li><input type="radio" name="prescription" id="rx"><label for="rx">Prescription Only</label></li>
+                    <li><input type="radio" name="prescription" id="otc"><label for="otc">OTC</label></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Products Grid -->
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Paracetamol 500mg</h4>
+                    <div class="product-manufacturer">Cipla</div>
+                    <div class="product-price">₹45.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Amoxicillin 250mg</h4>
+                    <div class="product-manufacturer">Sun Pharma</div>
+                    <div class="product-price">₹89.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Vitamin B Complex</h4>
+                    <div class="product-manufacturer">Abbott</div>
+                    <div class="product-price">₹156.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Aspirin 75mg</h4>
+                    <div class="product-manufacturer">Bayer</div>
+                    <div class="product-price">₹34.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Cetirizine 10mg</h4>
+                    <div class="product-manufacturer">Dr. Reddy's</div>
+                    <div class="product-price">₹29.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <h4>Omeprazole 20mg</h4>
+                    <div class="product-manufacturer">GSK</div>
+                    <div class="product-price">₹67.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Wellcure Pharmacy. All rights reserved.</p>
+    </footer>
+</body>
+</html>

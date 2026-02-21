@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcure - Collaborations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Dark Blue, Black, White Theme */
+        :root {
+            --dark-blue: #0a1929;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --light-gray: #e0e0e0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #4a90e2;
+            font-weight: 300;
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex: 0 1 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #222;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--black);
+            padding: 0.8rem 5%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            color: #4a90e2;
+        }
+
+        /* Page Title */
+        .page-title {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a3a5c 100%);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .collaborations-content {
+            padding: 4rem 5%;
+        }
+
+        /* Introduction */
+        .intro-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .intro-section h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .intro-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--black);
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Partners Grid */
+        .partners-section {
+            margin-bottom: 4rem;
+        }
+
+        .partners-section h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .partners-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--black);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .partner-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(10, 25, 41, 0.2);
+            border-color: var(--dark-blue);
+        }
+
+        .partner-logo {
+            height: 150px;
+            background: linear-gradient(135deg, var(--dark-blue), #1a3a5c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .partner-info {
+            padding: 1.5rem;
+        }
+
+        .partner-info h4 {
+            color: var(--dark-blue);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-category {
+            display: inline-block;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .partner-website {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .partner-website:hover {
+            color: #4a90e2;
+        }
+
+        /* Collaboration Categories */
+        .categories-section {
+            margin-bottom: 4rem;
+            background-color: var(--gray);
+            padding: 3rem;
+            border-radius: 8px;
+        }
+
+        .categories-section h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .category-item:hover {
+            border-color: var(--dark-blue);
+            transform: scale(1.05);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-item h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Become a Partner */
+        .become-partner {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a3a5c 100%);
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 4rem;
+        }
+
+        .become-partner h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .become-partner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .partner-btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1rem 3rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            border: 2px solid var(--white);
+        }
+
+        .partner-btn:hover {
+            background-color: #222;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-section h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .testimonials-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--black);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--dark-blue);
+            position: absolute;
+            left: -0.5rem;
+            top: -1rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .author-info h5 {
+            color: var(--dark-blue);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 4rem;
+        }
+
+        .benefits-section h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Well<span>cure</span></h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search for medicines, health products...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="cart-icon">
+            <a href="cart.html" style="color: var(--white); text-decoration: none; font-size: 1.2rem;">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical-store.html">Medical Store</a></li>
+            <li><a href="healthcare.html">Healthcare</a></li>
+            <li><a href="lab-tests.html">Lab Tests</a></li>
+            <li><a href="babycare.html">Baby Care</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborations.html">Collaborations</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-title">
+        <h2>Our Collaborations</h2>
+        <p>Partnering with the best to serve you better</p>
+    </div>
+
+    <div class="collaborations-content">
+        <!-- Introduction -->
+        <div class="intro-section">
+            <h3>Together for Better Healthcare</h3>
+            <p>At Wellcure, we believe in the power of collaboration. By partnering with leading pharmaceutical companies, diagnostic labs, hospitals, and healthcare providers, we ensure that our customers receive the highest quality products and services. Our network of trusted partners helps us deliver comprehensive healthcare solutions across India.</p>
+        </div>
+
+        <!-- Pharmaceutical Partners -->
+        <div class="partners-section">
+            <h3>Pharmaceutical Partners</h3>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>Sun Pharma</h4>
+                        <span class="partner-category">Pharmaceuticals</span>
+                        <p>India's largest pharmaceutical company, providing high-quality, affordable medicines across all therapeutic areas.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>Cipla</h4>
+                        <span class="partner-category">Pharmaceuticals</span>
+                        <p>Global pharmaceutical company committed to ensuring access to high-quality medicine for all.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>Dr. Reddy's</h4>
+                        <span class="partner-category">Pharmaceuticals</span>
+                        <p>Leading pharmaceutical company providing affordable and innovative medicines for healthier lives.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>Abbott</h4>
+                        <span class="partner-category">Healthcare</span>
+                        <p>Global healthcare leader helping people live more fully at all stages of life.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>GSK</h4>
+                        <span class="partner-category">Pharmaceuticals</span>
+                        <p>Science-led global healthcare company focused on innovative medicines and vaccines.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">💊</div>
+                    <div class="partner-info">
+                        <h4>Pfizer</h4>
+                        <span class="partner-category">Pharmaceuticals</span>
+                        <p>Leading biopharmaceutical company delivering breakthroughs that change patients' lives.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagnostic Partners -->
+        <div class="partners-section">
+            <h3>Diagnostic Partners</h3>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">🔬</div>
+                    <div class="partner-info">
+                        <h4>Lal PathLabs</h4>
+                        <span class="partner-category">Diagnostics</span>
+                        <p>India's leading diagnostic chain providing accurate and timely test results with advanced technology.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🔬</div>
+                    <div class="partner-info">
+                        <h4>Metropolis Healthcare</h4>
+                        <span class="partner-category">Diagnostics</span>
+                        <p>Global network of advanced diagnostic laboratories offering comprehensive testing services.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🔬</div>
+                    <div class="partner-info">
+                        <h4>Thyrocare</h4>
+                        <span class="partner-category">Diagnostics</span>
+                        <p>India's first fully automated diagnostic laboratory with affordable preventive healthcare services.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🔬</div>
+                    <div class="partner-info">
+                        <h4>SRL Diagnostics</h4>
+                        <span class="partner-category">Diagnostics</span>
+                        <p>Leading diagnostic chain committed to quality, accuracy, and patient care excellence.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hospital Partners -->
+        <div class="partners-section">
+            <h3>Hospital Partners</h3>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">🏥</div>
+                    <div class="partner-info">
+                        <h4>Apollo Hospitals</h4>
+                        <span class="partner-category">Healthcare</span>
+                        <p>Asia's largest healthcare group with world-class medical facilities and expert doctors.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🏥</div>
+                    <div class="partner-info">
+                        <h4>Fortis Healthcare</h4>
+                        <span class="partner-category">Healthcare</span>
+                        <p>Leading integrated healthcare delivery system with a network of hospitals across India.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🏥</div>
+                    <div class="partner-info">
+                        <h4>Max Healthcare</h4>
+                        <span class="partner-category">Healthcare</span>
+                        <p>Network of hospitals providing comprehensive, best-in-class healthcare services.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🏥</div>
+                    <div class="partner-info">
+                        <h4>Manipal Hospitals</h4>
+                        <span class="partner-category">Healthcare</span>
+                        <p>Premier healthcare provider known for clinical excellence and patient-centric approach.</p>
+                        <a href="#" class="partner-website">Visit Website →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collaboration Categories -->
+        <div class="categories-section">
+            <h3>Areas of Collaboration</h3>
+            <div class="categories-grid">
+                <div class="category-item">
+                    <div class="category-icon">💊</div>
+                    <h4>Medicine Supply</h4>
+                    <p>Direct partnerships with pharmaceutical companies for authentic medicines</p>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">🔬</div>
+                    <h4>Diagnostic Services</h4>
+                    <p>Collaboration with leading labs for accurate test results</p>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">🏥</div>
+                    <h4>Hospital Network</h4>
+                    <p>Connected with top hospitals for comprehensive care</p>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">👶</div>
+                    <h4>Baby Care Brands</h4>
+                    <p>Partnerships with trusted baby product manufacturers</p>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">🧴</div>
+                    <h4>Wellness Brands</h4>
+                    <p>Collaboration with leading wellness and personal care brands</p>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">📦</div>
+                    <h4>Logistics Partners</h4>
+                    <p>Reliable delivery partners for timely doorstep service</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partner Testimonials -->
+        <div class="testimonials-section">
+            <h3>What Our Partners Say</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        Working with Wellcure has been an excellent experience. Their commitment to authenticity and customer service aligns perfectly with our values. Together, we're making quality healthcare accessible to millions.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h5>Rajesh Khanna</h5>
+                            <p>Regional Director, Sun Pharma</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        Wellcure's platform has helped us reach more patients with our diagnostic services. Their professional approach and focus on customer satisfaction make them an ideal partner.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h5>Dr. Sangeeta Mehta</h5>
+                            <p>Lab Director, Lal PathLabs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The collaboration with Wellcure has enabled us to provide seamless healthcare solutions. Their technology-driven approach and extensive reach are truly impressive.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AV</div>
+                        <div class="author-info">
+                            <h5>Dr. Anjali Verma</h5>
+                            <p>Head of Partnerships, Apollo Hospitals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits of Collaboration -->
+        <div class="benefits-section">
+            <h3>Benefits of Partnering with Wellcure</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <h4>Wider Reach</h4>
+                    <p>Access to millions of customers across India through our platform</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤝</div>
+                    <h4>Trusted Partnership</h4>
+                    <p>Join a network of reputable healthcare partners</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>Growth Opportunities</h4>
+                    <p>Expand your business with our marketing and technology support</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Efficient Operations</h4>
+                    <p>Streamlined processes and integrated systems</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <h4>Data Insights</h4>
+                    <p>Valuable market insights to improve your offerings</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <h4>Innovation</h4>
+                    <p>Collaborate on innovative healthcare solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Become a Partner CTA -->
+        <div class="become-partner">
+            <h3>Become Our Partner</h3>
+            <p>Join our network of trusted healthcare partners and help us transform healthcare delivery in India. Whether you're a pharmaceutical company, diagnostic lab, hospital, or healthcare brand, we'd love to collaborate with you.</p>
+            <a href="#" class="partner-btn">Partner With Us</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wellcure</h4>
+                <p>Your trusted healthcare partner since 2020. We provide genuine medicines and healthcare products.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="collaborations.html">Collaborations</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>📍 123 Healthcare Street, Medical City</li>
+                    <li>📞 +91 98765 43210</li>
+                    <li>✉️ info@wellcure.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Wellcure Pharmacy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

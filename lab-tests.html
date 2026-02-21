@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcure - Lab Tests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --dark-blue: #0a1929;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Header & Navigation (same as before) */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #4a90e2;
+        }
+
+        .search-container {
+            flex: 0 1 400px;
+            display: flex;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-container button {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: var(--black);
+            padding: 0.8rem 5%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Page Title */
+        .page-title {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem 5%;
+        }
+
+        .page-title h2 {
+            font-size: 2rem;
+        }
+
+        /* Test Categories */
+        .test-categories {
+            padding: 3rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .test-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        .test-header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .test-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .test-body {
+            padding: 2rem;
+        }
+
+        .test-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .test-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .test-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .book-btn {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .book-btn:hover {
+            background-color: #1a3a5c;
+        }
+
+        /* Popular Tests */
+        .popular-tests {
+            padding: 3rem 5%;
+            background-color: var(--gray);
+        }
+
+        .popular-tests h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .test-item {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+        }
+
+        .test-item-info h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .test-item-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .test-item-price {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 3rem 5%;
+            background-color: var(--white);
+        }
+
+        .how-it-works h3 {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Well<span>cure</span></h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search lab tests...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="cart-icon">
+            <a href="cart.html" style="color: var(--white); text-decoration: none;">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical-store.html">Medical Store</a></li>
+            <li><a href="healthcare.html">Healthcare</a></li>
+            <li><a href="lab-tests.html">Lab Tests</a></li>
+            <li><a href="babycare.html">Baby Care</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborations.html">Collaborations</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-title">
+        <h2>Lab Tests</h2>
+        <p>Book diagnostic tests from home</p>
+    </div>
+
+    <div class="test-categories">
+        <div class="test-card">
+            <div class="test-header">
+                <h3>Basic Health Checkup</h3>
+            </div>
+            <div class="test-body">
+                <div class="test-price">₹999</div>
+                <ul class="test-features">
+                    <li>✓ Complete Blood Count</li>
+                    <li>✓ Thyroid Profile</li>
+                    <li>✓ Lipid Profile</li>
+                    <li>✓ Blood Sugar Fasting</li>
+                    <li>✓ Vitamin B12</li>
+                </ul>
+                <button class="book-btn" onclick="location.href='cart.html'">Book Now</button>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <div class="test-header">
+                <h3>Advanced Wellness</h3>
+            </div>
+            <div class="test-body">
+                <div class="test-price">₹2,499</div>
+                <ul class="test-features">
+                    <li>✓ All Basic Package Tests</li>
+                    <li>✓ Vitamin D Total</li>
+                    <li>✓ Liver Function Test</li>
+                    <li>✓ Kidney Function Test</li>
+                    <li>✓ Cardiac Risk Markers</li>
+                </ul>
+                <button class="book-btn" onclick="location.href='cart.html'">Book Now</button>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <div class="test-header">
+                <h3>Diabetes Care</h3>
+            </div>
+            <div class="test-body">
+                <div class="test-price">₹699</div>
+                <ul class="test-features">
+                    <li>✓ Blood Sugar Fasting</li>
+                    <li>✓ Blood Sugar PP</li>
+                    <li>✓ HbA1c</li>
+                    <li>✓ Urine Microalbumin</li>
+                    <li>✓ Insulin Fasting</li>
+                </ul>
+                <button class="book-btn" onclick="location.href='cart.html'">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popular-tests">
+        <h3>Popular Individual Tests</h3>
+        <div class="tests-grid">
+            <div class="test-item">
+                <div class="test-item-info">
+                    <h4>Complete Blood Count</h4>
+                    <p>Includes 25 parameters</p>
+                </div>
+                <div class="test-item-price">₹299</div>
+            </div>
+            <div class="test-item">
+                <div class="test-item-info">
+                    <h4>Thyroid Profile</h4>
+                    <p>T3, T4, TSH</p>
+                </div>
+                <div class="test-item-price">₹399</div>
+            </div>
+            <div class="test-item">
+                <div class="test-item-info">
+                    <h4>Vitamin D Total</h4>
+                    <p>25-Hydroxy Vitamin D</p>
+                </div>
+                <div class="test-item-price">₹899</div>
+            </div>
+            <div class="test-item">
+                <div class="test-item-info">
+                    <h4>HbA1c</h4>
+                    <p>Average blood sugar</p>
+                </div>
+                <div class="test-item-price">₹399</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="how-it-works">
+        <h3>How It Works</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Book Test</h4>
+                <p>Select your test and schedule home collection</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Sample Collection</h4>
+                <p>Technician visits your home for sample</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Get Reports</h4>
+                <p>Reports delivered online in 24-48 hours</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Wellcure Pharmacy. All rights reserved.</p>
+    </footer>
+</body>
+</html>

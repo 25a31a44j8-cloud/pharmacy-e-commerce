@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcure - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Dark Blue, Black, White Theme */
+        :root {
+            --dark-blue: #0a1929;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #4a90e2;
+            font-weight: 300;
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex: 0 1 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #222;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--black);
+            padding: 0.8rem 5%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            color: #4a90e2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a3a5c 100%);
+            color: var(--white);
+            padding: 4rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: 2px solid var(--white);
+        }
+
+        .btn:hover {
+            background-color: #222;
+        }
+
+        .hero-image {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--white);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 4rem 5%;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h3 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--black);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background-color: var(--gray);
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--dark-blue);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h4 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+        }
+
+        /* Featured Products */
+        .featured-products {
+            padding: 4rem 5%;
+            background-color: var(--gray);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1rem;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #1a3a5c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Well<span>cure</span></h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search for medicines, health products...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="cart-icon">
+            <a href="cart.html" style="color: var(--white); text-decoration: none; font-size: 1.2rem;">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="medical-store.html">Medical Store</a></li>
+            <li><a href="healthcare.html">Healthcare</a></li>
+            <li><a href="lab-tests.html">Lab Tests</a></li>
+            <li><a href="babycare.html">Baby Care</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborations.html">Collaborations</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Your Health, Our Priority</h2>
+            <p>Welcome to Wellcure - Your trusted online pharmacy for all healthcare needs. Get medicines, health products, lab tests and more.</p>
+            <a href="medical-store.html" class="btn">Shop Now</a>
+        </div>
+        <div class="hero-image">
+            <p style="font-size: 1.5rem;">💊 Healthcare at your doorstep</p>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="section-title">
+            <h3>Shop by Category</h3>
+        </div>
+        <div class="category-grid">
+            <div class="category-card" onclick="location.href='medical-store.html'">
+                <div class="category-icon">💊</div>
+                <h4>Medical Store</h4>
+                <p>All medicines</p>
+            </div>
+            <div class="category-card" onclick="location.href='healthcare.html'">
+                <div class="category-icon">🏥</div>
+                <h4>Healthcare</h4>
+                <p>Wellness products</p>
+            </div>
+            <div class="category-card" onclick="location.href='lab-tests.html'">
+                <div class="category-icon">🔬</div>
+                <h4>Lab Tests</h4>
+                <p>Book tests</p>
+            </div>
+            <div class="category-card" onclick="location.href='babycare.html'">
+                <div class="category-icon">👶</div>
+                <h4>Baby Care</h4>
+                <p>Baby essentials</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <div class="section-title">
+            <h3>Featured Products</h3>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h4>Paracetamol 500mg</h4>
+                    <p>Strip of 15 tablets</p>
+                    <div class="product-price">₹45.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h4>Vitamin C 1000mg</h4>
+                    <p>Bottle of 60 tablets</p>
+                    <div class="product-price">₹299.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h4>Digital Thermometer</h4>
+                    <p>Infrared thermometer</p>
+                    <div class="product-price">₹899.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h4>Baby Diapers</h4>
+                    <p>Pack of 48, Medium size</p>
+                    <div class="product-price">₹499.00</div>
+                    <button class="add-to-cart" onclick="location.href='cart.html'">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wellcure</h4>
+                <p>Your trusted healthcare partner since 2020. We provide genuine medicines and healthcare products.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="collaborations.html">Collaborations</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>📍 123 Healthcare Street, Medical City</li>
+                    <li>📞 +91 98765 43210</li>
+                    <li>✉️ info@wellcure.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Wellcure Pharmacy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
